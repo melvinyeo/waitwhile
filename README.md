@@ -1,18 +1,10 @@
 <snippet>
   <content><![CDATA[
-# ${1:Waitwhile - The clever and simple waitlisting app}
+# Waitwhile - The clever and simple waitlisting app
 
 Waitwhile is a clever and free waitlist app for restaurants and other businesses to manage queuing guests. It offers a sleek design, customizable SMS alerts, wait time estimator and useful customer insights.
 
 It's built on AngularJS, powered by Firebase and jazzed up by Twilio and Zapier. And of course Bootstrap for the suave UX!
-
-## Installation
-
-TODO: Describe the installation process
-
-## Usage
-
-TODO: Write usage instructions
 
 ## Contributing
 
@@ -24,15 +16,11 @@ TODO: Write usage instructions
 
 ## History
 
-TODO: Write history
-
-## Credits
-
-TODO: Write credits
+Created in May, 2015.
 
 ## License
 
-TODO: Write license
+MIT License
 ]]></content>
   <tabTrigger>readme</tabTrigger>
 </snippet>
