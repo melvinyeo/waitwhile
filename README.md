@@ -6,6 +6,9 @@ Waitwhile is a clever and free waitlist app for restaurants and other businesses
 
 It's built on AngularJS, powered by Firebase and jazzed up by Twilio + Zapier and Bootstrap for the UX.
 
+## Live
+Check it out here: https://waitwhile.com
+
 ## Contributing
 
 1. Fork it!
