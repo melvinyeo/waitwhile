@@ -22,5 +22,5 @@ Created in May, 2015.
 
 MIT License
 </content>
-  <tabTrigger>readme</tabTrigger>
+  <tabTrigger></tabTrigger>
 </snippet>
