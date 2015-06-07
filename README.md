@@ -1,6 +1,6 @@
 <snippet>
   <content>
-# Waitwhile - Waitlisting made simple
+# Waitwhile - waitlisting made simple
 
 Waitwhile is a clever and free waitlist app for restaurants and other businesses to manage queuing guests. It offers a sleek design, customizable SMS alerts, wait time estimator and useful customer insights.
 
