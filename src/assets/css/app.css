@@ -1,0 +1,602 @@
+html {
+  font-family: 'Roboto', sans-serif;
+  position:relative;
+  min-height: 100%;
+}
+
+body {
+  margin: 0 0 70px;
+}
+
+/* LAYOUT
+============================= */
+
+.view-container {
+  padding: 80px 15px;
+  margin: 0px auto;
+}
+
+.no-padding {
+  padding: 0px;
+}
+
+.view-header {
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.view-header h1 {
+  margin-top: 0px;
+  font-size: 58px;
+  font-weight: bold;
+}
+
+.view-header h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 34px;
+  color: #333;
+}
+
+.view-header h1 span {
+  font-style: italic;
+}
+
+.view-header p {
+  margin-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.view-header a {
+  font-weight: bold;
+}
+
+.footer {
+  position: absolute;
+  height: 70px;
+  width: 100%;
+  bottom: 0;
+  padding: 15px 15px 15px 15px;
+  font-size: 14px;
+  color: white;
+  background-color: #232323;
+}
+
+.footer a {
+  color: white;
+}
+
+.footer-help {
+  font-weight: bolder;
+}
+
+.navbar {
+  background-color: black;
+  border-color: white;
+  margin-bottom: 0px;
+  border: 0px;
+}
+.navbar-brand {
+  color: white;
+  font-family: 'Lobster', 'Roboto', sans-serif;
+  font-size: 20px;
+}
+.navbar-brand:hover, .navbar-brand:focus {
+  color: lightgrey;
+}
+.navbar-nav > li > a, .navbar-link {
+  color: white;
+}
+.navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+  color: black;
+  background-color: white;
+}
+.navbar-toggle, .navbar-collapse, .navbar-form {
+  border-color: white;
+}
+.navbar-toggle .icon-bar {
+  background-color: white;
+}
+.navbar-link:hover {
+  color: black;
+}
+
+/* LANDING PAGE
+============================= */
+
+.masthead {
+  height: 100%;
+  padding: 80px 0px 0px 0px;
+  /*background-color: black;*/
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover; 
+  -moz-background-size: cover; 
+  -o-background-size: cover; 
+  background-size: cover; 
+  color: white;
+}
+
+/* Desktop ----------- */
+@media only screen and (min-width: 1024px) {
+  .masthead {
+    background-image: url(/assets/img/background.png);
+    background-attachment: fixed;
+  }
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width : 451px) and (max-width : 1024px) {
+  .masthead {
+    background-image: url(/assets/img/background.png);
+  }
+}
+
+/* Smartphone ----------- */
+@media only screen and (max-width: 450px) {
+  .masthead {
+    background-image: url(/assets/img/background-mobile.png);
+   }
+}
+
+.device-image img {
+  width: 90%;
+  margin: 20px auto 0px auto;
+}
+
+@media only screen and (max-width: 767px) {
+  .device-image img {
+    width: 240px;
+  }
+}
+
+.features-section {
+  margin-top: -30px;
+  background-color: rgba(255, 255, 255, 0.97);
+  padding: 80px 40px 40px 40px;
+}
+
+.features-section .features-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.features-section .features-heading h2{
+  font-weight: bold;
+}
+
+@media only screen and (min-width:960px){
+  .features-section .features-heading p {
+    padding-right: 160px;
+    padding-left: 160px;
+  }
+}
+
+.features-section .feature {
+  text-align: center;
+  padding: 20px 20px 20px 20px;
+  margin: 0px 0px 20px 0px;
+  border-bottom: 1px #EEEEEE solid; 
+}
+
+@media only screen and (min-width:960px){
+  .features-section .feature {
+    padding: 20px 40px 20px 40px;
+    border-bottom: none;
+  }        
+}
+
+.features-section .feature .feature-image {
+  margin-left: auto;
+  margin-right: auto;
+  width: 140px;
+  height: 140px;
+  border-radius: 70px;
+  -webkit-border-radius: 70px;
+  -moz-border-radius: 70px;
+}
+
+
+.features-section .feature .feature-icon {
+  width: 80px; /* you can use % */
+  height: auto;
+}
+
+.features-section .feature .feature-image-1 {
+  background: url(/assets/img/icon-clipboard.png) no-repeat center;
+  background-color: #F4F4F4;
+}
+
+.features-section .feature .feature-image-2{
+  background: url(/assets/img/icon-sms.png) no-repeat center;
+  background-size: 75%;
+  /*background-color: #FF4C06;*/
+}
+
+.features-section .feature .feature-image-3{
+  background: url(/assets/img/icon-smsshow.png) no-repeat center;
+  /*background-size: 90%;*/
+  background-color: #F5F5F5;
+}
+
+.features-section .feature .feature-image-4{
+  background: url(/assets/img/icon-customsms.png) no-repeat center;
+  /*background-size: 100%;*/
+}
+
+.features-section .feature .feature-image-5{
+  background: url(/assets/img/icon-analytics.png) no-repeat center;
+  /*background-size: 120%;*/
+  background-color: #F4F4F4;
+}
+
+.features-section .feature .feature-image-6{
+  background: url(/assets/img/icon-realtime.png) no-repeat center;
+  /*background-size: 100%;*/
+  background-color: #F4F4F4;
+}
+
+.features-section .feature img {
+  width: 180px;
+}
+
+.features-section .feature h3 {
+  margin-top: 5px;
+  font-size: 24px;
+}
+
+.features-section .feature p {
+  font-size: 16px;
+}
+
+.view-bottom-cta {
+  text-align: center;
+  padding: 15px 15px 15px 15px;
+}
+
+.view-bottom-cta a {
+  font-weight: bold;
+}
+
+/* VIEW ANIMATION
+============================= */
+[ui-view].ng-enter {
+  opacity: 0.2;
+  transition: 0.6s linear;
+}
+
+[ui-view].ng-enter.ng-enter-active, [ui-view].ng-leave {
+  opacity: 1;
+}
+
+[ui-view].ng-leave.ng-leave-active {
+  opacity: 0.2;
+}
+
+/* FORMS
+============================= */
+
+.form-control-feedback {
+  line-height: 34px;
+}
+
+.input-lg ~ .form-control-feedback {
+  line-height: 46px; 
+}
+
+.has-feedback-left input.form-control {
+  padding-left: 34px; 
+  padding-right: 12px; 
+  margin: 0px 2px 0px 2px;
+}
+
+.has-feedback-left select.form-control {
+  padding-left: 34px; 
+  padding-right: 12px; 
+  margin: 0px 2px 0px 2px;
+  -webkit-appearance: none;
+}
+
+.has-feedback-left .form-control-feedback {
+  left: 0;
+}
+
+.form-horizontal .has-feedback-left .form-control-feedback {
+  left: 12px;
+}
+
+/* FEATURES PAGE
+============================= */
+@media only screen and (max-width:960px){
+  .features {
+    text-align: center;
+  }
+  .features img {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+}
+
+
+/* HELP PAGE
+============================= */
+
+.help-image {
+  width: 140px;
+}
+
+
+/* AUTH PAGES
+============================= */
+
+.form-auth {
+  text-align: center;
+  margin: 0px auto 30px auto;
+  width: 330px;
+}
+
+.has-success .form-control, .form-control-feedback {
+  border-color: #3CA529;
+  color: black !important;
+}
+
+/* WAIT LIST */
+
+.party-form {
+	margin-bottom: 20px;
+  text-align: left;
+}
+
+.panel-heading {
+  text-align: left;
+}
+
+.panel-waitlist {
+  text-align: center;
+  overflow: auto;
+}
+
+.panel-waitlist h3 {
+  font-size: 24px;
+}
+
+.panel-waitlist .waitlist-metrics {
+  margin: 5px 0px 0px 0px;
+}
+
+.panel-waitlist .waitlist-metrics span span {
+  color: #D3F1FF;
+  font-size: 12px;
+}
+
+.panel-waitlist .waitlist-metrics span a {
+  color: white;
+  text-decoration: underline;
+}
+
+.table-centered {
+  border: 0 !important;
+}
+
+.table-centered thead {
+  font-size:15px;
+}
+
+@media screen and (max-width: 767px) {
+  .panel-body {
+    padding: 15px 8px 15px 8px;
+  }
+  .table-centered>tbody>tr>td, .table-centered>thead>tr>th {
+    padding: 8px 4px 8px 4px;
+  }
+  .table-centered .btn {
+    margin: 1px;
+  }
+}
+
+.table-centered th, td {
+  text-align: center;
+}
+
+.table-centered th a {
+  color: black;
+}
+
+
+/* SETTINGS
+============================= */
+
+.background-grey {
+  background-color: #f3f3f3;
+}
+
+.restaurant-stat {
+  margin-bottom: 10px;
+  overflow: auto;
+}
+
+@media (min-width: 768px) { .restaurant-stat .restaurant-stat-data {
+  text-align: right;
+}}
+
+.restaurant-stat .restaurant-stat-data {
+  font-weight: bold;
+  font-size: 20px;
+  color: darkgreen;
+  line-height: 20px;
+}
+
+.restaurant-stat .restaurant-stat-label a {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.textarea-sms {
+  font-style: italic; 
+}
+
+.restaurant-stat h4 {
+  margin-bottom: 5px;
+}
+
+@media only screen and (min-width:960px){
+  .legend div {
+    float: left;
+  }
+}
+
+.legend-box {
+  width:12px; 
+  height:12px; 
+  float:left;
+  margin: 2px 2px 0px 5px;
+}
+
+/* MODAL BOX
+============================= */
+
+.modal-backdrop {
+  bottom:0;
+  position: fixed;
+}
+
+.modal.fade .modal-dialog, .modal.in .modal-dialog {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.modal-content {
+  position: absolute;
+  top:50%;
+  -ms-transform: translate(0,-50%);
+  -moz-transform: translate(0,-50%);
+  -webkit-transform: translate(0,-50%);
+  transform: translate(0,-50%);
+  width:100%;
+}
+
+/* DASHBOARD
+============================= */
+.squared {
+  border-radius: 0;
+  border: 1px solid #ccc;
+}
+
+.pagination-control {
+  text-align: center;
+}
+
+/* GLOBAL HELPER CLASSES
+============================= */
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+.separator-heading {
+  height: 1px; 
+  background-color: #BEBEBE; 
+  text-align: center; 
+  margin: 15px 0px 30px 0px
+}
+
+.separator-heading span {
+  color: #BEBEBE;
+  background-color: white; 
+  position: relative; 
+  top: -0.5em; 
+  padding-left: 15px; 
+  padding-right: 15px;
+}
+
+.loading-indicator {
+  margin-top: 250px;
+}
+
+.spinner {
+  text-align: center;
+}
+
+.glyphicon-spin {
+    -webkit-animation: spin 1000ms infinite linear;
+    animation: spin 1000ms infinite linear;
+}
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+.text-small {
+  margin-top: 5px;
+  font-size: 12px
+}
+
+.text-grey {
+  color: lightgrey;
+}
+
+.font-lobster {
+  font-family: 'lobster';
+  font-size: 70%;
+  /*color: #337ab7;*/
+  color: black;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+.link-blue {
+  color: #0000EE;
+  text-decoration: underline;
+}
+
+.semi-bold {
+  font-weight:500;
+}
+
+.text-white {
+  color: white;
+}
+
+.animate-fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+  -webkit-animation-duration: 1.75s;
+  animation-duration: 1.75s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.animate-element.ng-enter {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+}
+
+ .animate-row.ng-enter {
+   -webkit-animation-name: fadeInDown;
+   animation-name: fadeInDown;
+   -webkit-animation-duration: 0.75s;
+   animation-duration: 0.75s;
+ }
+

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" ng-app="waitlisterApp" ng-controller="MetaCtrl">
+<head>
+  <base href="/">
+  <title ng-bind="MetaInformation.title()">Waitwhile - The simple and free guest waitlist app</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Waitwhile™ is a simple and free app for managing your waitlists. Add guests, send free SMS alerts and track wait times.">
+  <meta name="keywords" content="waitwhile, waitlist, wait list, sms waitlist, waiting, waitinglist, waiting list, guest list, guest wait, waitlist app, restaurant waitlist, waitlist statistics, restaurant guest tracking, restaurant analytics">
+  <meta property="fb:app_id" content="336115726599332">
+  <meta property="og:type" content="website">
+  <meta
+  property="og:site_name" content="Waitwhile" />
+  <meta property="og:title" content="Ditch the clipboard. Waitwhile makes managing your guest waitlist easy as pie, totally for free."/>
+  <meta property="og:image" content="https://waitwhile.com/assets/img/favicon-large.png">
+  <meta property="og:url" content="https://waitwhile.com">
+  <meta property="og:description" content="Still using a clipboard to manage your guest waitlist? In 3 min you can create a free Waitwhile list to waitlist guests, track wait times and send free SMS alerts from any device. It's about time!">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://waitwhile.com">
+  <meta name="twitter:title" content="Ditch the clipboard with Waitwhile™">
+  <meta name="twitter:description" content="Still using a clip or chalkboard to manage your guest waitlist? In 3 min you can create a Waitwhile™ list to add guests, track wait times and send free SMS alerts from any device, totally free. It's about time.">
+  <meta name="twitter:image" content="assets/img/icon-clipboard.png">
+  <link rel="icon" href="assets/img/favicon.png">
+  <!-- build:css assets/css/waitlister.min.css -->
+  <link rel='stylesheet' href='assets/css/roboto-font.css'>
+  <link rel='stylesheet' href='assets/css/lobster-font.css'>
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/angular-ui-notification.min.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <link rel="stylesheet" href="assets/css/angular-chart.css">
+  <link rel="stylesheet" href="assets/css/angular-spinkit.min.css">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <!-- /build -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-62012274-1', 'auto');
+  </script>
+</head>
+
+<body>
+  <nav class="navbar navbar-fixed-top" ng-controller="NavbarCtrl as navbar">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" 
+            class="navbar-toggle"
+            ng-click="navbar.navbarCollapsed = !navbar.navbarCollapsed"
+            ng-cloak ng-if="!hideNavbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a ui-sref="home" class="navbar-brand">
+          <strong>Wait</strong>while
+        </a>
+      </div>
+      <div ng-cloak ng-if="!hideNavbar">
+        <div id="navbar" class="collapse navbar-collapse" collapse="navbar.navbarCollapsed">
+          <ul class="nav navbar-nav" ng-click="navbar.navbarCollapse()">
+            <li><a ui-sref="features">Features</a></li>
+            <li><a ui-sref="help">Help</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right" 
+            ng-cloak ng-if="!navbar.isSignedIn" 
+            ng-click="navbar.navbarCollapse()">
+            <li>
+              <a ui-sref="signup"><span class="glyphicon glyphicon-user"></span> Sign up</a>
+            </li>
+            <li>
+              <a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right" 
+              ng-cloak ng-if="navbar.isSignedIn" 
+              ng-click="navbar.navbarCollapse()">
+            <li>
+              <a ui-sref="waitlist"><span class="glyphicon glyphicon-list-alt"></span> My Waitlist</a>
+            </li>
+            <li>
+              <a ui-sref="dashboard"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a>
+            </li>
+            <li>
+              <a ui-sref="settings"><span class="glyphicon glyphicon-th"></span> Settings</a>
+            </li>
+            <li>
+              <a ui-sref="home" ng-click="navbar.logOut()"><span class="glyphicon glyphicon-log-out"></span> Leave</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="ui-view-container" ui-view autoscroll="true">
+    <state-loader></state-loader>
+  </div>
+
+  <footer class="footer">
+      <div class="footer-help">
+        Need help? Email us on <a href="mailto:hello@waitwhile.com"><u>hello@waitwhile.com</u></a>
+      </div>
+      <div class="footer-legal">
+        <ul class="list-inline">
+          <li><a ui-sref="home">Waitwhile® 2015</a></li>
+          <li>·</li>
+          <li><a ui-sref="privacy">Privacy</a></li>
+          <li>·</li>
+          <li><a ui-sref="terms">Terms</a></li>
+        </ul>
+      </div>
+  </footer>
+  <!-- build:js waitlister.min.js -->
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular/angular-animate.min.js"></script>
+  <script src="lib/angular/angular-ui-router.min.js"></script>
+  <script src="lib/angular/angular-sanitize.min.js"></script>
+  <script src="lib/angular-chart/Chart.min.js"></script>
+  <script src="lib/angular-chart/angular-chart.js"></script>
+  <script src="lib/ui-bootstrap/ui-bootstrap-tpls-0.12.1.min.js"></script>
+  <script src="lib/firebase/firebase.js"></script>
+  <script src="lib/firebase/angularfire.min.js"></script>
+  <script src="lib/underscore/angular-underscore-module.js"></script>
+  <script src="lib/angular-spinkit/angular-spinkit.min.js"></script>
+  <script src="lib/angular-csv/ng-csv.js"></script>
+  <script src="lib/angulartics/angulartics.min.js"></script>
+  <script src="lib/angulartics/angulartics-ga.min.js"></script>
+  <script src="lib/angular-utils-pagination/dirPagination.js"></script>
+  <script src="lib/angular-ui-notification/angular-ui-notification.min.js"></script>
+  <script src="app.js"></script>
+  <script src="modules/SEO/metaCtrl.js"></script>
+  <script src="modules/SEO/metaInformation.js"></script>
+  <script src="modules/services/auth.js"></script>
+  <script src="modules/services/restaurant.js"></script>  
+  <script src="modules/directives/stateLoader.js"></script>
+  <script src="modules/directives/validation/validationPopover.js"></script>
+  <script src="modules/directives/validation/intlTelValidation.js"></script>
+  <script src="modules/filters/telFilter.js"></script>
+  <script src="modules/filters/intlTelFilter.js"></script>
+  <script src="modules/navbar/navbarCtrl.js"></script>
+  <script src="modules/waitlist/waitlist.js"></script>
+  <script src="modules/waitlist/waitlistPublic.js"></script>
+  <script src="modules/waitlist/sms.js"></script>
+  <script src="modules/guests/guestsFactory.js"></script>
+  <script src="modules/login/login.js"></script>
+  <script src="modules/login/confirmRestaurantModal.js"></script>
+  <script src="modules/dashboard/dashboardCtrl.js"></script>
+  <script src="modules/settings/settings.js"></script>
+  <script src="modules/settings/settingsConfirmation.js"></script>  
+  <!-- /build -->  
+  <!-- build:remove -->
+  <script src="lib/libphonenumber/libphonenumber.js" async></script>
+  <script src="lib/underscore/underscore-min.js" async></script>
+  <!-- /build -->
+  <script type="text/javascript">
+    function downloadJSAtOnload() {
+      var element = document.createElement("script");
+      element.src = "waitlister.async.min.js";
+      document.body.appendChild(element);
+    }
+    if (window.addEventListener)
+    window.addEventListener("load", downloadJSAtOnload, false);
+    else if (window.attachEvent)
+    window.attachEvent("onload", downloadJSAtOnload);
+    else window.onload = downloadJSAtOnload;
+  </script>
+</body>
+</html>

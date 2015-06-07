@@ -1,0 +1,172 @@
+<div class="view-container">
+  <div class="view-header">
+    <h1>{{::waitlist.restaurant.restaurantName}}</h1>
+    <p class="lead">Manage your waitlist below or <a ui-sref="waitlistPublic({ restaurantId: waitlist.restaurant.$id })" target="_blank">view public waitlist</a>.</p>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Add Guest Party</h3>
+    </div>
+    <div class="panel-body">
+      <form name="addPartyForm" novalidate ng-submit="waitlist.saveParty(addPartyForm, waitlist.party)" class="form-inline party-form" >
+        <div class="form-group has-feedback has-feedback-left">
+          <label class="sr-only" for="partyName">Guest name</label>
+          <input  type="text"
+                  name="partyName" 
+                  id="partyName"
+                  class="form-control" 
+                  ng-model="waitlist.party.name"
+                  placeholder="Guest name" 
+                  pattern="[a-zA-Z0-9 ]+"
+                  title="No special characters"
+                  pop="Please enter a valid name" pop-show="{{ addPartyForm.$submitted && addPartyForm.partyName.$invalid }}" pop-placement="bottom"
+                  autocomplete="off"
+                  required> 
+          <i class="glyphicon glyphicon-user form-control-feedback"></i>
+        </div>
+        <div class="form-group has-feedback has-feedback-left">
+          <label class="sr-only" for="partyPhone">Phone number</label>
+          <input type="tel"
+                name="partyPhone" 
+                id="partyPhone"
+                class="form-control" 
+                ng-model="waitlist.party.phone"
+                placeholder="Phone number"
+                pattern="^[0-9\-\+\s\()]{7,}$"
+                title="Please enter a valid phone number"
+                pop="Please enter valid number. Use country prefix outside US." pop-show="{{ addPartyForm.$submitted && addPartyForm.partyName.$valid &&addPartyForm.partyPhone.$invalid }}" pop-placement="bottom"
+                autocomplete="off"
+                phone-validator
+                required>
+          <i class="glyphicon glyphicon-earphone form-control-feedback"></i>
+        </div>
+        <div class="form-group has-feedback has-feedback-left">
+          <label class="sr-only" for="partySize">Party Size</label>
+          <select name="partySize"
+                  id="partySize"
+                  class="form-control"  
+                  ng-model="waitlist.party.size"
+                  ng-options="opt as opt.label for opt in waitlist.partySizeOptions"
+                  required>
+        </select>
+        <i class="glyphicon glyphicon-triangle-bottom form-control-feedback"></i>
+      </div>
+      <div class="form-group has-feedback has-feedback-left">
+        <label class="sr-only" for="partyNotes">Notes</label>
+        <input  type="text"
+                name="partyNotes" 
+                id="partyNotes"
+                class="form-control"
+                ng-model="waitlist.party.notes"
+                ng-model-options="{ updateOn: 'blur' }"
+                placeholder="Notes"
+                autocomplete="off"/> 
+        <i class="glyphicon glyphicon-pencil form-control-feedback"></i>
+      </div>
+      <div class="form-group">
+       <button type="submit" class="btn btn-primary">Add</button>
+     </div>
+   </form>
+ </div>
+</div>
+  <div class="panel panel-primary">
+    <div class="panel-heading panel-waitlist">
+      <h3 class="panel-title">Waitlist</h3>
+      <div class="waitlist-metrics">
+        <div class="col-md-4">
+          <span>
+            <strong>Waiting:</strong> {{waitlist.parties.length}}
+          </span>
+        </div>
+        <div class="col-md-4">
+          <span>
+            <strong>Served:</strong>
+            {{waitlist.restaurant.customersServed}}
+          </span>
+        </div>
+        <div class="col-md-4">
+          <span>
+            <strong>Wait Time:</strong> 
+            {{waitlist.avgWaitTime * (1+ waitlist.parties.length)}} min
+            <span ng-if="waitlist.restaurant.customersServed > 0 && waitlist.parties.length > 0">(avg {{waitlist.avgWaitTime}} min)</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <table class="table table-hover table-centered table-responsive">
+        <colgroup>
+           <col span="1" style="width: 33.33%;">
+           <col span="1" style="width: 33.33%;">
+           <col span="1" style="width: 33.33%;">
+        </colgroup>
+        <thead>
+          <tr>
+            <th class="col-md-4">Guest</th>
+            <th class="col-md-4">Notify</th>
+            <th class="col-md-4">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr class="animate-row" ng-repeat="party in waitlist.parties | filter:waitlist.searchFilter | orderBy: 'dateCreated'">
+            <td class="col-md-4">
+              <div>
+                <div>
+                  <strong>{{::party.name}}</strong>
+                </div>
+                <div>
+                  <span class="glyphicon glyphicon-user"></span>
+                  <ng-pluralize count="party.size" when="
+                  {'1': ' 1 guest',
+                  '7': ' 7 or more guests',
+                  'other': ' {} guests'}">
+                  </ng-pluralize>
+                </div>
+                <div>
+                  <span class="glyphicon glyphicon-time"></span>
+                  {{::party.dateCreated | date:'shortTime'}}
+                </div>
+                <div ng-if="party.notes">
+                  <span class="badge" popover="{{::party.notes}}" popover-trigger="mouseenter">Note
+                  </span>
+                </div>
+              </div>
+            </td>
+            <td class="col-md-4">
+              <div>
+                <span class="glyphicon glyphicon-phone"></span>
+                <a href="tel:{{party.phone}}">{{::party.phone}}</a>
+              </div> 
+              <div>
+                <button type="button" class="btn btn-warning btn-sm"
+                  ng-if="!party.notified" ng-click="waitlist.smsParty(party)" 
+                  > 
+                  SMS
+                  <span class="spinner glyphicon glyphicon-refresh glyphicon-spin" ng-if="party.smsLoading"></span>
+                </button>
+                <button type="button" disabled class="btn btn-warning btn-sm" 
+                  ng-if="party.notified">SMS Sent
+                </button>
+              </div>
+           </td>
+           <td class="col-md-4">
+             <button type="button" ng-click="waitlist.serveParty(party)" class="btn btn-success btn-sm">Served
+             </button>
+             <button type="button" ng-click="waitlist.noShow(party)" class="btn btn-danger btn-sm">No Show
+             </button>
+           </td>
+        </tr>
+        <tr ng-if="waitlist.parties.length == 0">
+          <td colspan="3" class="text-center text-danger">Your Wait List is Empty</td>
+        </tr>
+      </table>
+      <form role="search" ng-if="waitlist.parties.length > 2" class="animate-element">
+        <div class="input-group" >
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+          </div>
+          <input type="text" class="form-control" placeholder="Search guests" ng-model="waitlist.searchFilter">
+        </div>
+      </form>
+    </div>
+</div>

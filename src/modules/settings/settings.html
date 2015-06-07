@@ -1,0 +1,157 @@
+<div class="view-container">
+	<div class="view-header">
+		<h1>Settings</h1>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Manage Your Profile</h3>
+		</div>
+		<div class="panel-body">
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label for="updateRestaurantName" class="col-sm-2 control-label">Business Name</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" 
+							name="updateRestaurantName"
+							id="updateRestaurantName"
+							ng-model="settings.restaurant.restaurantName" 
+							ng-model-options="{ updateOn: 'blur' }"
+							ng-change="settings.notifyOnChange('Restaurant name')">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="updatePhone" class="col-sm-2 control-label">Phone</label>
+					<div class="col-sm-10">
+						<input type="tel" class="form-control"
+							name="updatePhone"
+							pattern="^[0-9\-\+\s\()]{7,}$"
+				    		title="Please enter a valid phone number."
+							ng-model="settings.restaurant.phone"
+							ng-model-options="{ updateOn: 'blur' }"
+							ng-change="settings.notifyOnChange('Phone number')">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="updateWebsite" class="col-sm-2 control-label">Website</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control"
+							name="updateWebsite"
+				    		title="Please enter a valid website."
+							ng-model="settings.restaurant.website"
+							ng-model-options="{ updateOn: 'blur' }"
+							ng-change="settings.notifyOnChange('Website')"
+							placeholder="Enter your website (optional)">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="updateAddress" class="col-sm-2 control-label">Address</label>
+					<div class="col-sm-10">
+						<textarea rows="3" id="updateAdress" placeholder="Enter your address (optional)" class="form-control"
+							ng-model="settings.restaurant.address" 
+							ng-model-options="{ updateOn: 'blur' }"
+							ng-change="settings.notifyOnChange('Address')">
+						</textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="publicWaitlistURL" class="col-sm-2 control-label">Public Waitlist</label>
+					<div class="col-sm-10">
+						<a ui-sref="waitlistPublic({ restaurantId: settings.restaurant.$id })" target="_blank" class="form-control background-grey link-blue">waitwhile.com/list/{{::settings.restaurant.$id}}</a>
+						<div class="checkbox">
+							<label>
+							  <input type="checkbox" ng-model="settings.restaurant.allowPublicSignup">
+							  Allow guests to sign-up
+							  </label>
+					  	</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="smsConfirmText" class="col-sm-2 control-label">Confirmation SMS</label>
+					<div class="col-sm-10">
+						<textarea class="form-control textarea-sms" rows="3" id="smsConfirmText" 
+						ng-model="settings.restaurant.smsConfirmText"
+						ng-model-options="{ updateOn: 'blur' }"
+						ng-change="settings.notifyOnChange('Confirmation SMS')">
+						</textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="smsReadyText" class="col-sm-2 control-label">Alert SMS</label>
+					<div class="col-sm-10">
+						<textarea class="form-control textarea-sms" rows="3" id="smsReadyText" ng-model="settings.restaurant.smsReadyText"
+						ng-model-options="{ updateOn: 'blur' }"
+						ng-change="settings.notifyOnChange('Table Ready SMS')">
+						</textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<span class="text-small">
+							Available variables: 
+							<span class="badge" popover="Name of guest" popover-trigger="mouseenter">{name}
+							</span> 
+							<span class="badge" popover="Size of guest party" popover-trigger="mouseenter">{partySize}
+							</span> 
+							<span class="badge" popover="Notes you added to party" popover-trigger="mouseenter">{notes}
+							</span>
+						</span>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="panel panel-danger" ng-if="settings.ShowAccountSettings">
+		<div class="panel-heading">
+			<h3 class="panel-title">Manage your Account</h3>
+		</div>
+		<div class="panel-body">
+			<form class="form-horizontal" ng-submit="settings.changeEmail(settings.newEmail)">
+				<div class="form-group">
+					<label for="newEmail" class="col-sm-2 control-label">Change Email</label>
+					<div class="col-sm-10">
+						<span class="form-control background-grey"> {{settings.restaurant.email}} <i>(current)</i></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<input type="email" class="form-control" id="newEmail" placeholder="New email" ng-model="settings.newEmail">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-default">Save</button>
+					</div>
+				</div>
+			</form>
+			<form class="form-horizontal" ng-submit="settings.changePassword(settings.oldPassword, settings.newPassword)">
+				<div class="form-group">
+					<label for="newPassword" class="col-sm-2 control-label">Change Password</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="oldPassword" placeholder="Old Password" ng-model="settings.oldPassword">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<input type="password" class="form-control" id="newPassword" placeholder="New Password" ng-model="settings.newPassword">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-default">Save </button>
+						<span> </span> 
+						<a href="" ng-click="settings.forgotPassword()">Forgot password?</a>
+					</div>
+				</div>
+				<hr>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="button" class="btn btn-danger"
+								ng-click="settings.removeAccount()">
+								Remove Account
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

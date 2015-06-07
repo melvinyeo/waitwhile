@@ -1,0 +1,59 @@
+<div class="view-container">
+  <div class="view-header">
+    <h2>Welcome back!</h2>
+  </div>
+  <div class="form-auth">
+    <div class="separator-heading">
+      <span>
+       SIGN IN WITH
+      </span>
+    </div>
+    <div class="form-auth">
+      <button type="button" class="btn btn-primary" ng-click="auth.signupOAuth('facebook')">
+        <span class="glyphicon glyphicon-user"></span>Facebook
+      </button> 
+      <button type="button" class="btn btn-danger" ng-click="auth.signupOAuth('google')">
+        <span class="glyphicon glyphicon-search"></span>Google
+      </button>
+    </div>
+    <div class="separator-heading">
+      <span>
+       OR
+      </span>
+    </div>
+    <form name="loginForm" novalidate ng-submit="auth.login(loginForm, auth.user)">
+        <div class="form-group has-feedback has-feedback-left">
+          <label class="sr-only" for="email">Email</label>
+          <input  type="email"
+              name="email" 
+              ng-model="auth.user.email"
+                class="form-control" 
+                placeholder="Email" 
+                autocapitalize="off"
+                pop="Please enter your email" pop-show="{{ loginForm.$submitted && loginForm.email.$invalid}}" pop-placement="bottom"
+                required/> 
+            <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
+        </div>
+        <div class="form-group has-feedback has-feedback-left">
+          <label class="sr-only" for="password">Password</label>
+          <input  type="password"
+              name="password" 
+              ng-model="auth.user.password"
+                class="form-control" 
+                placeholder="Password" 
+                pop="Please enter your password" pop-show="{{ loginForm.$submitted && loginForm.password.$invalid && loginForm.email.$valid}}" pop-placement="bottom"
+                required/> 
+            <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+        </div>
+      <button type="submit" class="btn btn-primary btn-block">Login
+        <span class="spinner glyphicon glyphicon-refresh glyphicon-spin" ng-if="auth.loading"></span>
+      </button>
+    </form>
+    <div class="alert" ng-if="auth.alert" ng-class="{'alert-danger': auth.alert.type == 'error', 'alert-success': auth.alert.type == 'success'}">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      {{auth.alert.message}}
+    </div>
+    <a href="" ng-click="auth.forgotPassword(auth.user)">Forgot password?</a>
+  </div>
+</div>

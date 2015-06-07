@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h3 class="modal-title">Confirm by entering password</h3>
+</div>
+<div class="modal-body">
+  <form name="removeAccountForm" ng-submit="confirmModal.updateAccount(confirmModal.currentPassword)">
+  	<div class="form-group">
+  		<label for="password" class="sr-only">Password</label>
+		<input type="password" 
+			name="password"
+			ng-model="confirmModal.currentPassword" 
+			class="form-control" 
+			placeholder="Password"
+			autofocus 
+			required>
+  	</div>
+  	<div class="form-group">
+		<button type="submit" class="btn btn-danger">Confirm 	
+			<span class="spinner glyphicon glyphicon-refresh glyphicon-spin" ng-if="confirmModal.loading"></span>
+		</button>
+  	</div>
+  	<div class="alert alert-danger" ng-if="confirmModal.alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> 
+      <span class="sr-only">Error:</span>
+      {{confirmModal.alert.message}}
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" ng-click="confirmModal.cancel()">Cancel</button>
+ </div>
