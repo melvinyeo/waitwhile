@@ -21,6 +21,6 @@ Created in May, 2015.
 ## License
 
 MIT License
-]]></content>
+</content>
   <tabTrigger>readme</tabTrigger>
 </snippet>
